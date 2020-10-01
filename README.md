@@ -20,6 +20,7 @@ The application had been written with use of standard set of Java technologies:
 - Containerize with Docker to get ready for deploy.
 - Add git hooks to run static code analyzers and tests on the local machine before pushing to remote branches.
 - Add Spring profiles: prod, dev, test.
+- Mode strings (response message text etc.) to configuration file.
 
 ### How To...
 #### ... prepare environment
@@ -63,7 +64,18 @@ Returns 201 in case of success.
 	"payload" : "ewoJIm5hbWUiOiAicXdlcnR5Igp9"
 }
 ```
-Returns 200 and response body with offsets and status.
+Returns 200 and response body with offsets and status message:
+```
+{
+    "message": "Left and right sides are equal",
+    "offsets": []
+}
+```
+
+Possible `message` values:
+- `Left and right sides are equal`
+- `Left and right sides are not of equal length`
+- `Left and right sides of equal length but payload is different`
 ##### Notes
 - Both left and right payloads should be uploaded before comparing.
 - Only valid Base64 decoded JSON can be saved.
